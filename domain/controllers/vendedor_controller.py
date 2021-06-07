@@ -2,7 +2,7 @@ from domain.entity.vendedor import vendedor
 from main1 import *
 
 @app.route("/vendedor", methods=["POST", "GET", "DELETE"])
-def vendedor():
+def vendedorapi():
     if request.method=="POST":
         nombre=request.form["nombre"]
         apellido=request.form["apellido"]

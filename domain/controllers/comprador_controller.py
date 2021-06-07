@@ -3,7 +3,7 @@ from main1 import *
 
 
 @app.route("/comprador", methods=["POST", "GET", "DELETE"])
-def comprador():
+def compradorapi():
     if request.method=="POST":
         nombre=request.form["nombre"]
         apellido=request.form["apellido"]
@@ -15,7 +15,7 @@ def comprador():
         return {"message": "Funciona", "code": 200}
     if request.method=="GET":
         id = int(request.args.get("id"))
-        repocomprador.buscar(id)
+        compradorencontrado=repocomprador.buscar(id)
         return compradorencontrado.getinfojson()
     if request.method=="DELETE":
         id = int(request.args.get("id"))

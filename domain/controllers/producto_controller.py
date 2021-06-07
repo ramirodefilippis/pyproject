@@ -3,7 +3,7 @@ from main1 import *
 
 
 @app.route("/producto", methods=["POST", "GET", "DELETE"])
-def producto():
+def productoapi():
     if request.method=="POST":
         nombre=request.form["nombre"]
         categoria=request.form["categoria"]
@@ -15,7 +15,7 @@ def producto():
         return {"message": "Funciona", "code": 200}
     if request.method=="GET":
         id = int(request.args.get("id"))
-        repoproducto.buscar(id)
+        productoencontrado=repoproducto.buscar(id)
         return productoencontrado.getinfojson()
     if request.method=="DELETE":
         id = int(request.args.get("id"))
