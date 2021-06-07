@@ -1,4 +1,6 @@
 from domain.entity.comprador import comprador
+from main1 import *
+
 
 @app.route("/comprador", methods=["POST", "GET", "DELETE"])
 def comprador():

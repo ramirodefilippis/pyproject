@@ -1,4 +1,5 @@
 from domain.entity.producto import producto
+from main1 import *
 
 @app.route("/producto", methods=["POST", "GET", "DELETE"])
 def producto():
