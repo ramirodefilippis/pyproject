@@ -7,13 +7,17 @@ from domain.entity.comprador import comprador
 from domain.entity.producto import producto
 from domain.entity.vendedor import vendedor
 
+from domain.repository.producto_repository import productorepository
+from domain.repository.vendedor_repository import vendedorrepository
+from domain.repository.comprador_repository import compradorrepository
+
 app=Flask(__name__,static_url_path="")
 
-productos=[]
+repoproducto=productorepository()
 
-vendedores=[]
+repovendedor=vendedorrepository()
 
-compradores=[]
+repocomprador=compradorrepository()
 
 @app.route("/")
 def ramapadre():

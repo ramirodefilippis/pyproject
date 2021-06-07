@@ -10,13 +10,13 @@ def vendedor():
         turno=request.form["turno"]
         nuevovendedor=vendedor()
         nuevovendedor.ingresardatos(nombre,apellido,sucursal,turno)
-        vendedores.append(nuevovendedor)
+        repovendedor.ingresar(nuevovendedor)
         return {"message": "Funciona", "code": 200}
     if request.method=="GET":
         id = int(request.args.get("id"))
-        vendedorencontrado = vendedores[id]
+        vendedorencontrado = repovendedor.buscar(id)
         return vendedorencontrado.getinfojson()
     if request.method=="DELETE":
         id = int(request.args.get("id"))
-        vendedores.pop(id)
+        repovendedor.eliminar(id)
         return {"message": "Funciona", "code": 200}
