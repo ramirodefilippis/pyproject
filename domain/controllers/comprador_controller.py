@@ -9,13 +9,13 @@ def comprador():
         telefono=request.form["telefono"]
         nuevocomprador=compradores()
         nuevocomprador.ingresardatos(nombre,apellido,dni,telefono)
-        compradores.append(nuevocomprador)
+        repocomprador.ingresar(nuevocomprador)
         return {"message": "Funciona", "code": 200}
     if request.method=="GET":
         id = int(request.args.get("id"))
-        compradorencontrado = compradores[id]
+        repocomprador.buscar(id)
         return compradorencontrado.getinfojson()
     if request.method=="DELETE":
         id = int(request.args.get("id"))
-        compradores.pop(id)
+        repocomprador.eliminar(id)
         return {"message": "Funciona", "code": 200}

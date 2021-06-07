@@ -1,5 +1,6 @@
 from domain.entity.producto import producto
 
+
 @app.route("/producto", methods=["POST", "GET", "DELETE"])
 def producto():
     if request.method=="POST":
@@ -9,13 +10,13 @@ def producto():
         codigo=request.form["codigo"]
         nuevoproducto=producto()
         nuevoproducto.ingresardatos(nombre,categoria,precio,codigo)
-        productos.append(nuevoproducto)
+        repoproducto.ingresar(nuevoproducto)
         return {"message": "Funciona", "code": 200}
     if request.method=="GET":
         id = int(request.args.get("id"))
-        productoencontrado = productos[id]
+        repoproducto.buscar(id)
         return productoencontrado.getinfojson()
     if request.method=="DELETE":
         id = int(request.args.get("id"))
-        productos.pop(id)
+        repoproducto.eliminar(id)
         return {"message": "Funciona", "code": 200}
