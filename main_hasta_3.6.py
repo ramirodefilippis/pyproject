@@ -19,7 +19,7 @@ pepe=comprador("carlos","perez",20202020,154123654)
 
 productos=[]
 
-juan=vendedor("juan","lopez","avellaneda","mañana")
+vendedores=[]
 
 def inicio():
     print(pepe.getnombre())
@@ -53,11 +53,48 @@ def crearproducto():
     productos.append(nuevoproducto)
     return {"message": "Funciona", "code": 200}
 
+@app.route("/producto", methods=["POST", "GET", "DELETE"])
+def crearproductopost():
+    if request.method=="POST":
+        nombre=request.form["nombre"]
+        categoria=request.form["categoria"]
+        precio=request.form["precio"]
+        codigo=request.form["codigo"]
+        nuevoproducto=producto()
+        nuevoproducto.ingresardatos(nombre,categoria,precio,codigo)
+        productos.append(nuevoproducto)
+        return {"message": "Funciona", "code": 200}
+    if request.method=="GET":
+        id = int(request.args.get("id"))
+        productoencontrado = productos[id]
+        return productoencontrado.getinfojson()
+    if request.method=="DELETE":
+        id = int(request.args.get("id"))
+        productos.pop(id)
+        return {"message": "Funciona", "code": 200}
+
 @app.route("/consultarproducto")
 def consultarproducto():
     id=int(request.args.get("id"))
     productoencontrado=productos[id]
     return productoencontrado.getinfojson()
+
+@app.route("/crearvendedor")
+def crearvendedor():
+    nombre=request.args.get("nombre")
+    apellido=request.args.get("apellido")
+    sucursal=request.args.get("sucursal")
+    turno=request.args.get("turno")
+    nuevovendedor=vendedor()
+    nuevovendedor.ingresardatos(nombre, apellido, sucursal, turno)
+    vendedores.append(nuevovendedor)
+    return {"message": "Funciona", "code": 200}
+
+@app.route("/consultarvendedor")
+def consultarvendedor():
+    id=int(request.args.get("id"))
+    vendedorencontrado=vendedores[id]
+    return vendedorencontrado.getinfojson()
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000)
