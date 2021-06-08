@@ -1,0 +1,31 @@
+swagger:
+  "2.0"
+info:
+  description: "Sirve para guardar info de producto_vendedor_comprador"
+  version:
+    "1.0.0"
+  title: "Ordenador"
+paths:
+  /producto:
+    post:
+      parameters:
+        in: "body"
+        name: "Producto"
+        required: true
+        schema:
+          $ref: '#/definitions/Producto'
+      response:
+        200:
+          description: "Subio los datos"
+definitions:
+  Producto:
+    type: object
+    properties:
+      nombre:
+        type: string
+      categoria:
+        type: string
+      precio:
+        type: integer
+      codigo:
+        type: integer

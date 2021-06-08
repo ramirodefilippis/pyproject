@@ -1,0 +1,47 @@
+post:
+  parameters:
+    in: body
+    name: producto
+    description: Subir producto
+    schema:
+      $ref: '#/descriptions/Producto'
+  responses:
+    200:
+      description: El producto se creo correctamente
+      schema:
+        response:
+          type: object
+          parameters:
+            message:
+              type: string
+            code:
+              type: integer
+    500:
+      description: Error del servidor porque no existe el id
+get:
+  responses:
+    200:
+      description: Te devuelve el producto buscado por id
+      schema:
+        $ref: '#/definitions/Producto'
+    500:
+      description: Error del servidor porque no existe el id
+definitions:
+  Producto:
+    type: object
+    properties:
+      nombre:
+        type: string
+      categoria:
+        type: string
+      precio:
+        type: integer
+      codigo:
+        type: integer
+  Dato:
+    type: object
+    properties:
+      id:
+          $ref: '#/definitions/id'
+  id:
+    type: int
